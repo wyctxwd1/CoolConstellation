@@ -40,6 +40,7 @@ public class ConstellationActivity extends AppCompatActivity {
     private LinearLayout weekTest;
     private LinearLayout monthTest;
     public SwipeRefreshLayout refreshLayout;
+    private ImageView bg;
 
 
 
@@ -61,6 +62,7 @@ public class ConstellationActivity extends AppCompatActivity {
         weekTest= (LinearLayout) findViewById(R.id.week_test);
         monthTest= (LinearLayout) findViewById(R.id.month_test);
         refreshLayout= (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        bg= (ImageView) findViewById(R.id.bg);
 
         refreshLayout.setColorSchemeResources(R.color.colorPrimary);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -90,6 +92,7 @@ public class ConstellationActivity extends AppCompatActivity {
 
         collapsingToolbarLayout.setTitle(constellationName);
         Glide.with(this).load(constellationImg).into(constellationImgView);
+        Glide.with(this).load(R.drawable.bg).into(bg);
 
 
         requestTodayConstellation(constellationName);
