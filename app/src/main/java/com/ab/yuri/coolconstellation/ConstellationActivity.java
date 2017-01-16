@@ -242,9 +242,9 @@ public class ConstellationActivity extends AppCompatActivity {
         TextView todaySum= (TextView) view.findViewById(R.id.today_sum);
 
         todayDate.setText(today.todayDateTime);
-        todayAll.setText(today.todayAll);
-        todayColor.setText(today.todayColor);
-        todaySum.setText(today.todaySummary);
+        todayAll.setText("综合指数："+today.todayAll);
+        todayColor.setText("幸运色："+today.todayColor);
+        todaySum.setText("今日概述："+today.todaySummary);
         todayTest.addView(view);
 
     }
@@ -258,9 +258,9 @@ public class ConstellationActivity extends AppCompatActivity {
         TextView weekWork= (TextView) view.findViewById(R.id.week_work);
 
         weekDate.setText(week.weekDate);
-        weekHeath.setText(week.weekHealth);
-        weekLove.setText(week.weekLove);
-        weekWork.setText(week.weekWork);
+        weekHeath.setText("健康运势："+week.weekHealth);
+        weekLove.setText("爱情运势："+week.weekLove);
+        weekWork.setText("工作运势："+week.weekWork);
         weekTest.addView(view);
 
     }
@@ -275,10 +275,10 @@ public class ConstellationActivity extends AppCompatActivity {
         TextView monthAll= (TextView) view.findViewById(R.id.month_all);
 
         monthDate.setText(month.monthDate);
-        monthHeath.setText(month.monthHealth);
-        monthLove.setText(month.monthLove);
-        monthWork.setText(month.monthWork);
-        monthAll.setText(month.monthAll);
+        monthHeath.setText("健康运势："+month.monthHealth);
+        monthLove.setText("爱情运势："+month.monthLove);
+        monthWork.setText("工作运势："+month.monthWork);
+        monthAll.setText("综合运势："+month.monthAll);
         monthTest.addView(view);
 
     }
