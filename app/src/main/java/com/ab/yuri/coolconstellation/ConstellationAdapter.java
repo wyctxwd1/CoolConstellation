@@ -45,10 +45,17 @@ public class ConstellationAdapter extends RecyclerView.Adapter<ConstellationAdap
         }
         View view= LayoutInflater.from(mContext).inflate(R.layout.choose_item,parent,false);
         final ViewHolder holder=new ViewHolder(view);
-
-
-        ;
-
+        holder.constellationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position=holder.getAdapterPosition();
+                Constellation constellation=mConstellationList.get(position);
+                Intent intent=new Intent(mContext,ConstellationActivity.class);
+                intent.putExtra(ConstellationActivity.CONSTELLATION_NAME,constellation.getConstellationName());
+                intent.putExtra(ConstellationActivity.CONSTELLATION_IMG,constellation.getConstellationImg());
+                mContext.startActivity(intent);
+            }
+        });
         return holder;
     }
 
