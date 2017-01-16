@@ -7,11 +7,15 @@ package com.ab.yuri.coolconstellation;
 public class Constellation {
     private String constellationName;
     private int constellationImg;
+    private int constellationImgView;
 
-    public Constellation(String constellationName, int constellationImg) {
+    public Constellation(String constellationName, int constellationImg, int constellationImgView) {
         this.constellationName = constellationName;
         this.constellationImg = constellationImg;
+        this.constellationImgView = constellationImgView;
     }
+
+
 
     public String getConstellationName() {
         return constellationName;
@@ -21,4 +25,8 @@ public class Constellation {
         return constellationImg;
     }
 
+    public int getConstellationImgView() {
+        return constellationImgView;
+    }
 }
+

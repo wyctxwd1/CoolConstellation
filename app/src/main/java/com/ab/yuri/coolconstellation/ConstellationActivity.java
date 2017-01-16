@@ -1,7 +1,10 @@
 package com.ab.yuri.coolconstellation;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,13 +32,15 @@ import okhttp3.Response;
 
 public class ConstellationActivity extends AppCompatActivity {
     public static final String CONSTELLATION_NAME="constellation_name";
-    public static final String CONSTELLATION_IMG="constellation_img";
+    public static final String CONSTELLATION_IMG_VIEW="constellation_img_view";
     private Toolbar toolBar;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private ImageView constellationImgView;
     private LinearLayout todayTest;
     private LinearLayout weekTest;
     private LinearLayout monthTest;
+    public SwipeRefreshLayout refreshLayout;
+
 
 
 
@@ -46,8 +51,8 @@ public class ConstellationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_constellation);
         Intent intent=getIntent();
-        String constellationName=intent.getStringExtra(CONSTELLATION_NAME);
-        int constellationImg=intent.getIntExtra(CONSTELLATION_IMG,0);
+        final String constellationName=intent.getStringExtra(CONSTELLATION_NAME);
+        int constellationImg=intent.getIntExtra(CONSTELLATION_IMG_VIEW,0);
 
         toolBar= (Toolbar) findViewById(R.id.constellation_toolbar);
         collapsingToolbarLayout= (CollapsingToolbarLayout) findViewById(R.id.constellation_collapsing_toolbar);
@@ -55,6 +60,25 @@ public class ConstellationActivity extends AppCompatActivity {
         todayTest= (LinearLayout) findViewById(R.id.today_test);
         weekTest= (LinearLayout) findViewById(R.id.week_test);
         monthTest= (LinearLayout) findViewById(R.id.month_test);
+        refreshLayout= (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+
+        refreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                requestTodayConstellation(constellationName);
+                requestWeekConstellation(constellationName);
+                requestMonthConstellation(constellationName);
+
+            }
+        });
+
+        if (Build.VERSION.SDK_INT>=21){
+            View decorView=getWindow().getDecorView();
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
 
 
 
@@ -100,6 +124,7 @@ public class ConstellationActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(ConstellationActivity.this,"获取星座信息失败",Toast.LENGTH_SHORT).show();
+                        refreshLayout.setRefreshing(false);
                     }
                 });
 
@@ -118,7 +143,9 @@ public class ConstellationActivity extends AppCompatActivity {
                             Toast.makeText(ConstellationActivity.this,"获取星座信息失败",Toast.LENGTH_SHORT).show();
 
                         }
+                        refreshLayout.setRefreshing(false);
                     }
+
                 });
 
             }
@@ -136,6 +163,7 @@ public class ConstellationActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(ConstellationActivity.this,"获取星座信息失败",Toast.LENGTH_SHORT).show();
+                        refreshLayout.setRefreshing(false);
                     }
                 });
 
@@ -154,6 +182,7 @@ public class ConstellationActivity extends AppCompatActivity {
                             Toast.makeText(ConstellationActivity.this,"获取星座信息失败",Toast.LENGTH_SHORT).show();
 
                         }
+                        refreshLayout.setRefreshing(false);
                     }
                 });
 
@@ -172,6 +201,7 @@ public class ConstellationActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(ConstellationActivity.this,"获取星座信息失败",Toast.LENGTH_SHORT).show();
+                        refreshLayout.setRefreshing(false);
                     }
                 });
 
@@ -190,6 +220,7 @@ public class ConstellationActivity extends AppCompatActivity {
                             Toast.makeText(ConstellationActivity.this,"获取星座信息失败",Toast.LENGTH_SHORT).show();
 
                         }
+                        refreshLayout.setRefreshing(false);
                     }
                 });
 

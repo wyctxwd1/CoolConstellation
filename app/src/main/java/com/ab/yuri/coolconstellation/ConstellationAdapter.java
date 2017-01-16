@@ -52,7 +52,7 @@ public class ConstellationAdapter extends RecyclerView.Adapter<ConstellationAdap
                 Constellation constellation=mConstellationList.get(position);
                 Intent intent=new Intent(mContext,ConstellationActivity.class);
                 intent.putExtra(ConstellationActivity.CONSTELLATION_NAME,constellation.getConstellationName());
-                intent.putExtra(ConstellationActivity.CONSTELLATION_IMG,constellation.getConstellationImg());
+                intent.putExtra(ConstellationActivity.CONSTELLATION_IMG_VIEW,constellation.getConstellationImgView());
                 mContext.startActivity(intent);
             }
         });
